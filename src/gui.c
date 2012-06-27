@@ -13,6 +13,14 @@ int running = 0;
 
 int fullscreen = 0;
 
+int player_x = 0;
+int player_y = 0;
+
+short right_down = 0;
+short left_down = 0;
+short up_down = 0;
+short down_down = 0;
+
 /*! \brief The Screen Width */
 int width = DEFUALT_WIDTH; 
 
@@ -20,10 +28,41 @@ int width = DEFUALT_WIDTH;
 int height = DEFAULT_HEIGHT;
 
 void handle_keydown(SDL_KeyboardEvent *key_event) {
-	
-	if(key_event->keysym.sym == SDLK_ESCAPE) {
-		stop_gui();
+	switch(key_event->keysym.sym) {
+		case SDLK_ESCAPE:
+			stop_gui();
+			break;
+		case SDLK_LEFT:
+			left_down = 1;
+			break;
+		case SDLK_RIGHT:
+			right_down = 1;
+			break;
+		case SDLK_UP:
+			up_down = 1;
+			break;
+		case SDLK_DOWN:
+			down_down = 1;
+			break;
 	}
+}
+
+void handle_keyup(SDL_KeyboardEvent *key_event) {
+	switch(key_event->keysym.sym) {
+                case SDLK_LEFT:
+                        left_down = 0;
+                        break;
+                case SDLK_RIGHT:
+                        right_down = 0;
+                        break;
+		case SDLK_UP:
+			up_down = 0;
+			break;
+		case SDLK_DOWN:
+			down_down = 0;
+			break;
+        }
+
 }
 
 /*!
@@ -37,6 +76,10 @@ void on_event(SDL_Event *event) {
 			break;
 		case SDL_KEYDOWN:
 			handle_keydown(&event->key);
+			break;
+		case SDL_KEYUP:
+			handle_keyup(&event->key);
+			break;
 	}
 }
 
@@ -102,12 +145,26 @@ void render(SDL_Surface *surface) {
 	if (image->format->palette && surface->format->palette) {
 		SDL_SetColors(surface, image->format->palette->colors, 0, image->format->palette->ncolors);
 	}
+	
+	SDL_Rect coverPrev;
+	coverPrev.x = player_x-1;
+	coverPrev.y = player_y-1;
+	coverPrev.w = image->w+1;
+	coverPrev.h = image->h+1;
+	SDL_FillRect(surface, &coverPrev, SDL_MapRGB(surface->format, 0x00, 0x00, 0x00));
 
-	if(SDL_BlitSurface(image,NULL, surface,NULL) < 0) {
+	SDL_Rect dest;
+	dest.x = player_x;
+	dest.y = player_y;
+	dest.w = image->w;
+	dest.h = image->h;
+
+	if(SDL_BlitSurface(image,NULL, surface, &dest) < 0) {
 		fprintf(stderr, "%s\n", SDL_GetError());
 	}
 
-	SDL_UpdateRect(surface, 0,0,image->w, image->h);
+
+	SDL_UpdateRect(surface, dest.x,dest.y,dest.w, dest.h);
 	SDL_FreeSurface(image);
 }
 
@@ -125,7 +182,20 @@ void start_loop(SDL_Surface* surface) {
 		while(SDL_PollEvent(&event)) {
 			on_event(&event);
 		}
+		if(right_down && player_x < surface->w) {
+			player_x++;
+		} else if(left_down && player_x > 0) {
+			player_x--;
+		}
+
+		if(down_down && player_y < surface -> h) {
+			player_y++;
+		} else if(up_down && player_y > 0) {
+			player_y--;
+		}
+
 		render(surface);
+		SDL_Delay(60);
 	}
 	SDL_FreeSurface(surface);
 }
