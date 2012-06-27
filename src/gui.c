@@ -3,6 +3,7 @@
 #include<ctype.h>
 #include<unistd.h>
 #include<SDL/SDL.h>
+//#include<SDL/SDL_Image.h>
 
 #include "gui.h"
 #include "model.h"
@@ -18,13 +19,24 @@ int width = DEFUALT_WIDTH;
 /*! \brief The screen height */
 int height = DEFAULT_HEIGHT;
 
+void handle_keydown(SDL_KeyboardEvent *key_event) {
+	
+	if(key_event->keysym.sym == SDLK_ESCAPE) {
+		stop_gui();
+	}
+}
+
 /*!
  * \brief Handles SDL Events.
  * \param event The SDL Event to handle
  */
 void on_event(SDL_Event *event) {
-	if(event->type == SDL_QUIT) {
-		stop_gui();
+	switch(event->type) {
+		case SDL_QUIT:
+			stop_gui();
+			break;
+		case SDL_KEYDOWN:
+			handle_keydown(&event->key);
 	}
 }
 
@@ -76,28 +88,27 @@ void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
 void render(SDL_Surface *surface) {
 	model* cur_model = model_get_reading();
 
-	/* Lock the screen for direct access to the pixels */
-//	if ( SDL_MUSTLOCK(surface) ) {
-//		if ( SDL_LockSurface(surface) < 0 ) {
-//			fprintf(stderr, "Can't lock screen: %s\n", SDL_GetError());
-//			return;
-//		}
-//	}
+	SDL_Surface *image = IMG_Load("img/character1.png");
+	if(image == NULL) {
+		fprintf(stderr, "Unable to load image - reason: %s\n", SDL_GetError());
+		return;
+	}
 
-//	printf("drawing at: %d, %d\n", cur_model->x, cur_model->y);
-	int x,y;
-	x = rand() % width;
-	y = rand() % height;
+	/*
+	 * Palettized screen modes will have a default palette (a standard
+	 * 8*8*4 colour cube), but if the image is palettized as well we can
+	 * use that palette for a nicer colour matching
+	 */
+	if (image->format->palette && surface->format->palette) {
+		SDL_SetColors(surface, image->format->palette->colors, 0, image->format->palette->ncolors);
+	}
 
-	Uint32 colour = SDL_MapRGB(surface->format, 0xff, 0xff, 0xff);
-	Uint32 * pix = (Uint32 *) surface->pixels + y*surface->pitch/4 + x;
-	pix = colour;
+	if(SDL_BlitSurface(image,NULL, surface,NULL) < 0) {
+		fprintf(stderr, "%s\n", SDL_GetError());
+	}
 
- 
-//	if ( SDL_MUSTLOCK(surface) ) {
-//		SDL_UnlockSurface(surface);
-//	}
-	SDL_UpdateRect(surface, x,y,1,1);
+	SDL_UpdateRect(surface, 0,0,image->w, image->h);
+	SDL_FreeSurface(image);
 }
 
 /*!
@@ -127,7 +138,8 @@ int start_gui() {
 	int ret = 0;
 
 	// Initialise SDL.
-	ret = SDL_Init(SDL_INIT_EVERYTHING); 
+	ret = SDL_Init(SDL_INIT_EVERYTHING);
+	SDL_EnableUNICODE(1);
 
 	// Return if the operation failed.
 	if( ret == -1 ) {
@@ -135,8 +147,14 @@ int start_gui() {
 		return ret;
 	}
 
+	if(fullscreen) {
+		SDL_VideoInfo* info = SDL_GetVideoInfo();
+		width = info->current_w;
+		height = info->current_h;
+	}
+
 	// Get the surface.
-	surface = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF | fullscreen ? SDL_FULLSCREEN : 0);
+	surface = SDL_SetVideoMode(width, height, 32, SDL_HWSURFACE | SDL_DOUBLEBUF); 
 
 	// Return if the surface didn't create.
 	if(surface == NULL) {

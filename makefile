@@ -1,6 +1,6 @@
 CC=clang
 CFLAGS= -c -Wall `sdl-config --cflags --libs`
-LDFLAGS= -lSDL
+LDFLAGS= -lSDL -lSDL_image
 
 SRC=src/
 DIST=bin/
