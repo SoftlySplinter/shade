@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/softly/game/shade/src/gui/gui.h
+
+/home/softly/game/shade/src/shade.c
+stdlib.h
+-
+stdio.h
+-
+SDL/SDL.h
+-
+shade.h
+/home/softly/game/shade/src/shade.h
+gui/gui.h
+/home/softly/game/shade/src/gui/gui.h
+
+shade.h
+

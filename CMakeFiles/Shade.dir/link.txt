@@ -1,0 +1,1 @@
+/usr/bin/gcc      CMakeFiles/Shade.dir/shade.c.o CMakeFiles/Shade.dir/gui/gui.c.o CMakeFiles/Shade.dir/model/model.c.o  -o Shade -rdynamic /usr/local/lib/libSDLmain.a /usr/local/lib/libSDL.so -lpthread -lSDL_image -lSDLmain -Wl,-rpath,/usr/local/lib 
