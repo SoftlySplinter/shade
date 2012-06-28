@@ -2,23 +2,23 @@
 #include<stdio.h>
 #include<ctype.h>
 #include<unistd.h>
+#include<stdbool.h>
 #include<SDL/SDL.h>
 
 #include "./gui.h"
-#include "../model/model.h"
+#include "./player.h"
+#include "./map.h"
+#include "../model/player.h"
 
 /*! \brief 1 if the GUI is running */
 int running = 0;
 
 int fullscreen = 0;
 
-int player_x = 0;
-int player_y = 0;
-
-short right_down = 0;
-short left_down = 0;
-short up_down = 0;
-short down_down = 0;
+bool right_down = 0;
+bool left_down = 0;
+bool up_down = 0;
+bool down_down = 0;
 
 /*! \brief The Screen Width */
 int width = DEFUALT_WIDTH; 
@@ -32,34 +32,46 @@ void handle_keydown(SDL_KeyboardEvent *key_event) {
 			stop_gui();
 			break;
 		case SDLK_LEFT:
-			left_down = 1;
+		case SDLK_a:
+			left_down = true;
 			break;
 		case SDLK_RIGHT:
-			right_down = 1;
+		case SDLK_d:
+			right_down = true;
 			break;
+		case SDLK_w:
 		case SDLK_UP:
-			up_down = 1;
+			up_down = true;
 			break;
+		case SDLK_s:
 		case SDLK_DOWN:
-			down_down = 1;
+			down_down = true;
 			break;
+		case SDLK_LSHIFT:
+			switch_crouch();
 	}
 }
 
 void handle_keyup(SDL_KeyboardEvent *key_event) {
 	switch(key_event->keysym.sym) {
                 case SDLK_LEFT:
-                        left_down = 0;
+		case SDLK_a:
+                        left_down = false;
                         break;
+		case SDLK_d:
                 case SDLK_RIGHT:
-                        right_down = 0;
+                        right_down = false;
                         break;
+		case SDLK_w:
 		case SDLK_UP:
-			up_down = 0;
+			up_down = false;
 			break;
+		case SDLK_s:
 		case SDLK_DOWN:
-			down_down = 0;
+			down_down = false;
 			break;
+		case SDLK_LSHIFT:
+			switch_crouch();
         }
 
 }
@@ -82,89 +94,12 @@ void on_event(SDL_Event *event) {
 	}
 }
 
-/*
- * Set the pixel at (x, y) to the given value
- * NOTE: The surface must be locked before calling this!
- */
-void putpixel(SDL_Surface *surface, int x, int y, Uint32 pixel)
-{
-    int bpp = surface->format->BytesPerPixel;
-    /* Here p is the address to the pixel we want to set */
-    Uint8 *p = (Uint8 *)surface->pixels + y * surface->pitch + x * bpp;
-
-    switch (bpp) {
-    case 1:
-        *p = pixel;
-        break;
-
-    case 2:
-        *(Uint16 *)p = pixel;
-        break;
-
-    case 3:
-        if (SDL_BYTEORDER == SDL_BIG_ENDIAN) {
-            p[0] = (pixel >> 16) & 0xff;
-            p[1] = (pixel >> 8) & 0xff;
-            p[2] = pixel & 0xff;
-        }
-        else {
-            p[0] = pixel & 0xff;
-            p[1] = (pixel >> 8) & 0xff;
-            p[2] = (pixel >> 16) & 0xff;
-        }
-        break;
-
-    case 4:
-        *(Uint32 *)p = pixel;
-        break;
-
-   default:
-	fprintf(stdout, "Something went wrong\n");
-        break;           /* shouldn't happen, but avoids warnings */
-    } // switch
-}
-
 /*! 
  * \brief Perform a single render of the screen.
  */
 void render(SDL_Surface *surface) {
-	model* cur_model = model_get_reading();
-
-	SDL_Surface *image = IMG_Load("img/character1.png");
-	if(image == NULL) {
-		fprintf(stderr, "Unable to load image - reason: %s\n", SDL_GetError());
-		return;
-	}
-
-	/*
-	 * Palettized screen modes will have a default palette (a standard
-	 * 8*8*4 colour cube), but if the image is palettized as well we can
-	 * use that palette for a nicer colour matching
-	 */
-	if (image->format->palette && surface->format->palette) {
-		SDL_SetColors(surface, image->format->palette->colors, 0, image->format->palette->ncolors);
-	}
-	
-	SDL_Rect coverPrev;
-	coverPrev.x = player_x-1;
-	coverPrev.y = player_y-1;
-	coverPrev.w = image->w+1;
-	coverPrev.h = image->h+1;
-	SDL_FillRect(surface, &coverPrev, SDL_MapRGB(surface->format, 0x00, 0x00, 0x00));
-
-	SDL_Rect dest;
-	dest.x = player_x;
-	dest.y = player_y;
-	dest.w = image->w;
-	dest.h = image->h;
-
-	if(SDL_BlitSurface(image,NULL, surface, &dest) < 0) {
-		fprintf(stderr, "%s\n", SDL_GetError());
-	}
-
-
-	SDL_UpdateRect(surface, dest.x,dest.y,dest.w, dest.h);
-	SDL_FreeSurface(image);
+	render_map(surface);
+	render_player(surface);
 }
 
 /*!
@@ -181,16 +116,21 @@ void start_loop(SDL_Surface* surface) {
 		while(SDL_PollEvent(&event)) {
 			on_event(&event);
 		}
-		if(right_down && player_x < surface->w) {
-			player_x++;
-		} else if(left_down && player_x > 0) {
-			player_x--;
+
+		if(right_down && left_down) {
+			;
+		} else if(right_down) {
+			move_right();
+		} else if(left_down) {
+			move_left();
 		}
 
-		if(down_down && player_y < surface -> h) {
-			player_y++;
-		} else if(up_down && player_y > 0) {
-			player_y--;
+		if(down_down && up_down) {
+			;
+		} else if(down_down) {
+			move_down();
+		} else if(up_down) {
+			move_up();
 		}
 
 		render(surface);

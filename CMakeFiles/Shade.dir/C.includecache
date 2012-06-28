@@ -6,19 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/softly/game/shade/src/gui/gui.h
+/home/softly/game/shade/src/gui/../model/player.h
+stdbool.h
+-
 
-/home/softly/game/shade/src/shade.c
+/home/softly/game/shade/src/gui/./gui.h
+
+/home/softly/game/shade/src/gui/./map.h
+
+/home/softly/game/shade/src/gui/./player.h
+../model/player.h
+/home/softly/game/shade/src/gui/./../model/player.h
+
+/home/softly/game/shade/src/gui/gui.c
 stdlib.h
 -
 stdio.h
 -
+ctype.h
+-
+unistd.h
+-
+stdbool.h
+-
 SDL/SDL.h
 -
-shade.h
-/home/softly/game/shade/src/shade.h
-gui/gui.h
-/home/softly/game/shade/src/gui/gui.h
-
-shade.h
+./gui.h
+/home/softly/game/shade/src/gui/./gui.h
+./player.h
+/home/softly/game/shade/src/gui/./player.h
+./map.h
+/home/softly/game/shade/src/gui/./map.h
+../model/player.h
+/home/softly/game/shade/src/gui/../model/player.h
 

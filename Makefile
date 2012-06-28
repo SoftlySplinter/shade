@@ -132,6 +132,54 @@ gui/gui.c.s:
 	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/gui.c.s
 .PHONY : gui/gui.c.s
 
+gui/map.o: gui/map.c.o
+.PHONY : gui/map.o
+
+# target to build an object file
+gui/map.c.o:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/map.c.o
+.PHONY : gui/map.c.o
+
+gui/map.i: gui/map.c.i
+.PHONY : gui/map.i
+
+# target to preprocess a source file
+gui/map.c.i:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/map.c.i
+.PHONY : gui/map.c.i
+
+gui/map.s: gui/map.c.s
+.PHONY : gui/map.s
+
+# target to generate assembly for a file
+gui/map.c.s:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/map.c.s
+.PHONY : gui/map.c.s
+
+gui/player.o: gui/player.c.o
+.PHONY : gui/player.o
+
+# target to build an object file
+gui/player.c.o:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/player.c.o
+.PHONY : gui/player.c.o
+
+gui/player.i: gui/player.c.i
+.PHONY : gui/player.i
+
+# target to preprocess a source file
+gui/player.c.i:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/player.c.i
+.PHONY : gui/player.c.i
+
+gui/player.s: gui/player.c.s
+.PHONY : gui/player.s
+
+# target to generate assembly for a file
+gui/player.c.s:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/player.c.s
+.PHONY : gui/player.c.s
+
 model/model.o: model/model.c.o
 .PHONY : model/model.o
 
@@ -155,6 +203,30 @@ model/model.s: model/model.c.s
 model/model.c.s:
 	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/model/model.c.s
 .PHONY : model/model.c.s
+
+model/player.o: model/player.c.o
+.PHONY : model/player.o
+
+# target to build an object file
+model/player.c.o:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/model/player.c.o
+.PHONY : model/player.c.o
+
+model/player.i: model/player.c.i
+.PHONY : model/player.i
+
+# target to preprocess a source file
+model/player.c.i:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/model/player.c.i
+.PHONY : model/player.c.i
+
+model/player.s: model/player.c.s
+.PHONY : model/player.s
+
+# target to generate assembly for a file
+model/player.c.s:
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/model/player.c.s
+.PHONY : model/player.c.s
 
 shade.o: shade.c.o
 .PHONY : shade.o
@@ -192,9 +264,18 @@ help:
 	@echo "... gui/gui.o"
 	@echo "... gui/gui.i"
 	@echo "... gui/gui.s"
+	@echo "... gui/map.o"
+	@echo "... gui/map.i"
+	@echo "... gui/map.s"
+	@echo "... gui/player.o"
+	@echo "... gui/player.i"
+	@echo "... gui/player.s"
 	@echo "... model/model.o"
 	@echo "... model/model.i"
 	@echo "... model/model.s"
+	@echo "... model/player.o"
+	@echo "... model/player.i"
+	@echo "... model/player.s"
 	@echo "... shade.o"
 	@echo "... shade.i"
 	@echo "... shade.s"

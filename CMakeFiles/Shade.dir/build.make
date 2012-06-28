@@ -92,9 +92,55 @@ CMakeFiles/Shade.dir/gui/gui.c.o.provides: CMakeFiles/Shade.dir/gui/gui.c.o.requ
 
 CMakeFiles/Shade.dir/gui/gui.c.o.provides.build: CMakeFiles/Shade.dir/gui/gui.c.o
 
+CMakeFiles/Shade.dir/gui/player.c.o: CMakeFiles/Shade.dir/flags.make
+CMakeFiles/Shade.dir/gui/player.c.o: src/gui/player.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/softly/game/shade/CMakeFiles $(CMAKE_PROGRESS_3)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Shade.dir/gui/player.c.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Shade.dir/gui/player.c.o   -c /home/softly/game/shade/src/gui/player.c
+
+CMakeFiles/Shade.dir/gui/player.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Shade.dir/gui/player.c.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/softly/game/shade/src/gui/player.c > CMakeFiles/Shade.dir/gui/player.c.i
+
+CMakeFiles/Shade.dir/gui/player.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Shade.dir/gui/player.c.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/softly/game/shade/src/gui/player.c -o CMakeFiles/Shade.dir/gui/player.c.s
+
+CMakeFiles/Shade.dir/gui/player.c.o.requires:
+.PHONY : CMakeFiles/Shade.dir/gui/player.c.o.requires
+
+CMakeFiles/Shade.dir/gui/player.c.o.provides: CMakeFiles/Shade.dir/gui/player.c.o.requires
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/player.c.o.provides.build
+.PHONY : CMakeFiles/Shade.dir/gui/player.c.o.provides
+
+CMakeFiles/Shade.dir/gui/player.c.o.provides.build: CMakeFiles/Shade.dir/gui/player.c.o
+
+CMakeFiles/Shade.dir/gui/map.c.o: CMakeFiles/Shade.dir/flags.make
+CMakeFiles/Shade.dir/gui/map.c.o: src/gui/map.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/softly/game/shade/CMakeFiles $(CMAKE_PROGRESS_4)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Shade.dir/gui/map.c.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Shade.dir/gui/map.c.o   -c /home/softly/game/shade/src/gui/map.c
+
+CMakeFiles/Shade.dir/gui/map.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Shade.dir/gui/map.c.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/softly/game/shade/src/gui/map.c > CMakeFiles/Shade.dir/gui/map.c.i
+
+CMakeFiles/Shade.dir/gui/map.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Shade.dir/gui/map.c.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/softly/game/shade/src/gui/map.c -o CMakeFiles/Shade.dir/gui/map.c.s
+
+CMakeFiles/Shade.dir/gui/map.c.o.requires:
+.PHONY : CMakeFiles/Shade.dir/gui/map.c.o.requires
+
+CMakeFiles/Shade.dir/gui/map.c.o.provides: CMakeFiles/Shade.dir/gui/map.c.o.requires
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/gui/map.c.o.provides.build
+.PHONY : CMakeFiles/Shade.dir/gui/map.c.o.provides
+
+CMakeFiles/Shade.dir/gui/map.c.o.provides.build: CMakeFiles/Shade.dir/gui/map.c.o
+
 CMakeFiles/Shade.dir/model/model.c.o: CMakeFiles/Shade.dir/flags.make
 CMakeFiles/Shade.dir/model/model.c.o: src/model/model.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/softly/game/shade/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/softly/game/shade/CMakeFiles $(CMAKE_PROGRESS_5)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Shade.dir/model/model.c.o"
 	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Shade.dir/model/model.c.o   -c /home/softly/game/shade/src/model/model.c
 
@@ -115,18 +161,47 @@ CMakeFiles/Shade.dir/model/model.c.o.provides: CMakeFiles/Shade.dir/model/model.
 
 CMakeFiles/Shade.dir/model/model.c.o.provides.build: CMakeFiles/Shade.dir/model/model.c.o
 
+CMakeFiles/Shade.dir/model/player.c.o: CMakeFiles/Shade.dir/flags.make
+CMakeFiles/Shade.dir/model/player.c.o: src/model/player.c
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/softly/game/shade/CMakeFiles $(CMAKE_PROGRESS_6)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Shade.dir/model/player.c.o"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Shade.dir/model/player.c.o   -c /home/softly/game/shade/src/model/player.c
+
+CMakeFiles/Shade.dir/model/player.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Shade.dir/model/player.c.i"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -E /home/softly/game/shade/src/model/player.c > CMakeFiles/Shade.dir/model/player.c.i
+
+CMakeFiles/Shade.dir/model/player.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Shade.dir/model/player.c.s"
+	/usr/bin/gcc  $(C_DEFINES) $(C_FLAGS) -S /home/softly/game/shade/src/model/player.c -o CMakeFiles/Shade.dir/model/player.c.s
+
+CMakeFiles/Shade.dir/model/player.c.o.requires:
+.PHONY : CMakeFiles/Shade.dir/model/player.c.o.requires
+
+CMakeFiles/Shade.dir/model/player.c.o.provides: CMakeFiles/Shade.dir/model/player.c.o.requires
+	$(MAKE) -f CMakeFiles/Shade.dir/build.make CMakeFiles/Shade.dir/model/player.c.o.provides.build
+.PHONY : CMakeFiles/Shade.dir/model/player.c.o.provides
+
+CMakeFiles/Shade.dir/model/player.c.o.provides.build: CMakeFiles/Shade.dir/model/player.c.o
+
 # Object files for target Shade
 Shade_OBJECTS = \
 "CMakeFiles/Shade.dir/shade.c.o" \
 "CMakeFiles/Shade.dir/gui/gui.c.o" \
-"CMakeFiles/Shade.dir/model/model.c.o"
+"CMakeFiles/Shade.dir/gui/player.c.o" \
+"CMakeFiles/Shade.dir/gui/map.c.o" \
+"CMakeFiles/Shade.dir/model/model.c.o" \
+"CMakeFiles/Shade.dir/model/player.c.o"
 
 # External object files for target Shade
 Shade_EXTERNAL_OBJECTS =
 
 Shade: CMakeFiles/Shade.dir/shade.c.o
 Shade: CMakeFiles/Shade.dir/gui/gui.c.o
+Shade: CMakeFiles/Shade.dir/gui/player.c.o
+Shade: CMakeFiles/Shade.dir/gui/map.c.o
 Shade: CMakeFiles/Shade.dir/model/model.c.o
+Shade: CMakeFiles/Shade.dir/model/player.c.o
 Shade: /usr/local/lib/libSDLmain.a
 Shade: /usr/local/lib/libSDL.so
 Shade: /usr/lib/i386-linux-gnu/libSDL_image.so
@@ -141,7 +216,10 @@ CMakeFiles/Shade.dir/build: Shade
 
 CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/shade.c.o.requires
 CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/gui/gui.c.o.requires
+CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/gui/player.c.o.requires
+CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/gui/map.c.o.requires
 CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/model/model.c.o.requires
+CMakeFiles/Shade.dir/requires: CMakeFiles/Shade.dir/model/player.c.o.requires
 .PHONY : CMakeFiles/Shade.dir/requires
 
 CMakeFiles/Shade.dir/clean:

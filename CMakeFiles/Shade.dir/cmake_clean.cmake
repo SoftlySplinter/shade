@@ -1,7 +1,10 @@
 FILE(REMOVE_RECURSE
   "CMakeFiles/Shade.dir/shade.c.o"
   "CMakeFiles/Shade.dir/gui/gui.c.o"
+  "CMakeFiles/Shade.dir/gui/player.c.o"
+  "CMakeFiles/Shade.dir/gui/map.c.o"
   "CMakeFiles/Shade.dir/model/model.c.o"
+  "CMakeFiles/Shade.dir/model/player.c.o"
   "Shade.pdb"
   "Shade"
 )

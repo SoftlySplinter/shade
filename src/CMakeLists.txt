@@ -22,7 +22,10 @@ set(
    SOURCES
    ${PROJECT_SOURCE_DIR}/shade.c
    ${PROJECT_SOURCE_DIR}/gui/gui.c
+   ${PROJECT_SOURCE_DIR}/gui/player.c
+   ${PROJECT_SOURCE_DIR}/gui/map.c
    ${PROJECT_SOURCE_DIR}/model/model.c
+   ${PROJECT_SOURCE_DIR}/model/player.c
 )
 
 Find_Package ( SDL REQUIRED )
